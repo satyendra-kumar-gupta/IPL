@@ -1,8 +1,8 @@
 function extraRuns(deliveries, matches) {
     let result3 = {};
-    let k=2016;
-    if(k==2016){
-    //for (let k = 2008; k <= 2019; k++) {
+   // let k=2016;
+   // if(k==2016){
+    for (let k = 2008; k <= 2019; k++) {
         let id = matches.filter(match => (match.season) == Number(k)).map(match => match.id);
 
         let team;
@@ -12,7 +12,7 @@ function extraRuns(deliveries, matches) {
             .map(delivery => delivery.extra_runs)); // only get extra run per year
         var uniqueArray = [...new Set(team)] //Get all unique values in a JavaScript array (remove duplicates)
 
-        //let r = {}; // object 
+        let r = {}; // object 
         for (let j = 0; j < uniqueArray.length; j++) {
             let t = uniqueArray[j].split(" "); // break team name bcoz (name is long)
 
@@ -23,9 +23,9 @@ function extraRuns(deliveries, matches) {
                     c = c + Number(extrarun[i]);
                 }
             }
-            result3[uniqueArray[j]] = c; // {"Rising Pune Supergiants": 108,}
+            r[uniqueArray[j]] = c; // {"Rising Pune Supergiants": 108,}
         }
-       // result3[k] = r; //"extraRuns": 2008: {"Rising Pune Supergiants": 108,}
+        result3[k] = r; //"extraRuns": 2008: {"Rising Pune Supergiants": 108,}
     }
 
     return result3;

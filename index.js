@@ -8,6 +8,7 @@ const extraRuns = require("./ipl/extraRuns"); //extraRuns() for this function
 const economicalBowlers = require("./ipl/economicalBowlers"); //economicalBowlers() for this function
 const storyTossWinner = require("./ipl/storyTossWinner"); //storyTossWinner() for this function
 const JSON_OUTPUT_FILE_PATH = "./public/data.json";
+const JSON_OUTPUT_FILE_PATH3 = "./public/data1.json";
 
 function main() {
   csv()
@@ -26,21 +27,39 @@ function main() {
           let result4 = economicalBowlers(deliveries, matches);//console.log(result4); 
           let result5 = storyTossWinner(matches); //console.log(result5);
           
-          saveMatchesPlayedPerYear(result, result22, result3,result4,result5);
+          //saveMatchesPlayedPerYear(result, result22, result3,result4,result5);
+          saveMatchesPlayedPerYear(result, result22,result4,result5);
+          saveMatchesPlayedPerYear3(result3);
         });
       // ****** deliveries end here *******
     });
 }
-function saveMatchesPlayedPerYear(result, result22, result3, result4,result5) {
+function saveMatchesPlayedPerYear(result, result22, result4,result5) {
   const jsonData = {
     matchesPlayedPerYear: result,
     matchesWonByEachTeam: result22,
-    extraRuns: result3,
+   // extraRuns: result3,
     economicalBowlers: result4,
     storyTossWinner: result5
   };
   const jsonString = JSON.stringify(jsonData);
   fs.writeFile(JSON_OUTPUT_FILE_PATH, jsonString, "utf8", err => {
+    if (err) {
+      console.error(err);
+    }
+  });
+
+}
+function saveMatchesPlayedPerYear3(result3) {
+  const jsonData = {
+    // matchesPlayedPerYear: result,
+    // matchesWonByEachTeam: result22,
+     extraRuns: result3
+    // economicalBowlers: result4,
+    // storyTossWinner: result5
+  };
+  const jsonString = JSON.stringify(jsonData);
+  fs.writeFile(JSON_OUTPUT_FILE_PATH3, jsonString, "utf8", err => {
     if (err) {
       console.error(err);
     }
